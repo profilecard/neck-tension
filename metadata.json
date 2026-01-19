@@ -1,0 +1,7 @@
+{
+  "name": "Neck Tension Home Care",
+  "description": "AI-powered neck wrinkle analysis tool that provides personalized care advice and product recommendations based on wrinkle severity.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
