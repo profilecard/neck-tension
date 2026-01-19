@@ -132,7 +132,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, onReset }) => {
             rel="noopener noreferrer"
             className="group block w-full py-5 wadiz-bg text-white text-center rounded-3xl font-black text-lg shadow-xl shadow-emerald-100 transition-all hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3"
           >
-            슈퍼 얼리버드 혜택 받기
+            지금 펀딩중 최대 70%혜택받기
             <i className="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
