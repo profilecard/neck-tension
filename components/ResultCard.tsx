@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AnalysisResult } from '../types';
 
@@ -17,6 +16,28 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, onReset }) => {
   };
 
   const levelLabels = ["완벽한 평야", "잔잔한 파도", "눈에 띄는 골", "깊은 골짜기", "대자연의 나이테"];
+
+  const handleShare = async () => {
+    const shareUrl = "https://neck-tension.vercel.app/";
+    const shareText = `[나의 목주름 진단 결과]\n레벨: ${result.level}단계 (${result.nickname})\n목 피부 나이: ${result.skinAge}세\n\n지금 바로 당신의 목주름 상태를 확인해보세요!`;
+    
+    try {
+      // 카카오톡 공유 등 외부 앱 연동을 위해 클립보드 복사 기능을 우선 실행
+      await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
+      alert('링크가 복사 되었습니다');
+
+      // 브라우저 기본 공유 시트도 함께 띄워주기 (모바일 사용자 편의성)
+      if (navigator.share) {
+        await navigator.share({
+          title: '나의 목주름 나이는 몇살일까요? 목주름 진단기',
+          text: shareText,
+          url: shareUrl,
+        });
+      }
+    } catch (err) {
+      console.error('Error sharing:', err);
+    }
+  };
 
   return (
     <div className="animate-in fade-in zoom-in-95 duration-500 pb-10">
@@ -73,7 +94,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, onReset }) => {
         </div>
       </div>
 
-      {/* Product Guide - More Fun & Interactive Visuals */}
+      {/* Product Guide */}
       <div className="bg-white rounded-[2.5rem] shadow-xl p-8 border-2 border-emerald-500/20 mb-8 overflow-hidden relative">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -116,10 +137,10 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, onReset }) => {
         <div className="mt-10 pt-8 border-t border-gray-100">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-md">
-              <img src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&q=80&w=200" alt="Product" className="w-full h-full object-cover" />
+              <img src="https://cdn3.wadiz.kr/studio/images/2026/01/09/0ec77965-64ee-4fd6-88da-8a948de9721f.jpeg/wadiz/resize/400/format/jpg/quality/85/" alt="Product" className="w-full h-full object-cover" />
             </div>
             <div>
-              <p className="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">Wadiz Exclusive</p>
+              <p className="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">[솔루션] 2단계 목주름팩!</p>
               <p className="text-gray-900 font-bold text-sm leading-snug">
                 와디즈 펀딩 1위 넥케어 세트 <br/> 펩타이드 크림 & 패치 패키지
               </p>
@@ -127,14 +148,22 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, onReset }) => {
           </div>
 
           <a 
-            href="https://www.wadiz.kr/web/wcomingsoon/rwd/362833" 
+            href="https://www.wadiz.kr/web/wcomingsoon/rwd/362833?utm_source=maker_unknown&utm_medium=362833_" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group block w-full py-5 wadiz-bg text-white text-center rounded-3xl font-black text-lg shadow-xl shadow-emerald-100 transition-all hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3"
+            className="group block w-full py-5 wadiz-bg text-white text-center rounded-3xl font-black text-lg shadow-xl shadow-emerald-100 transition-all hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3 mb-4"
           >
-            지금 펀딩중 최대 70%혜택받기
+            목주름팩 최대 70% 혜택받기
             <i className="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
           </a>
+
+          <button 
+            onClick={handleShare}
+            className="w-full py-5 bg-[#FEE500] text-[#191919] rounded-3xl font-black text-lg flex items-center justify-center gap-3 shadow-xl shadow-yellow-100 transition-all hover:scale-[1.03] active:scale-95 mb-4"
+          >
+            <i className="fa-solid fa-comment text-xl"></i>
+            친구에게 공유하기
+          </button>
         </div>
       </div>
 

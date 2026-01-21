@@ -152,7 +152,7 @@ const App: React.FC = () => {
       </main>
       
       <footer className="mt-8 text-center text-[10px] text-gray-400">
-        <p>© 2024 Neck tension home care Lab. All Rights Reserved.</p>
+        <p>© 2026 Neck tension home care Lab. All Rights Reserved.</p>
       </footer>
     </div>
   );
